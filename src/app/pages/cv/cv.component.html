@@ -1,0 +1,286 @@
+<div class="cv-container">
+  <!-- Language Switcher -->
+  <button class="lang-switcher" (click)="switchLanguage()">
+    {{ getOppositeLanguage() }}
+  </button>
+
+  <!-- Header Principal - Diseño Ejecutivo -->
+  <header class="cv-header">
+    <div class="header-content">
+      <div class="profile-section">
+        <div class="profile-avatar">
+          <img
+            [src]="personalInfo.profileImage"
+            alt="Marcel Andrés Marín Martínez"
+            class="profile-image"
+          />
+          <div class="availability-badge">
+            <span class="pulse"></span>
+            Disponible
+          </div>
+        </div>
+        <div class="profile-info">
+          <h1 class="name">{{ personalInfo.name }}</h1>
+          <h2 class="title">{{ personalInfo.title }}</h2>
+          <p class="subtitle">{{ personalInfo.subtitle }}</p>
+          <div class="location-info">
+            <span><i class="fas fa-map-marker-alt"></i> {{ personalInfo.location }}</span>
+            <span><i class="fas fa-globe"></i> {{ personalInfo.availability }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-section">
+        <div class="contact-item" (click)="copyEmail()">
+          <i class="fas fa-envelope"></i>
+          <span>{{ personalInfo.email }}</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>{{ personalInfo.phone }}</span>
+        </div>
+        <div class="contact-item" (click)="openExternalLink(personalInfo.linkedin)">
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </div>
+        <div class="contact-item" (click)="openExternalLink('https://' + personalInfo.website)">
+          <i class="fas fa-globe"></i>
+          <span>{{ personalInfo.website }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas de Impacto -->
+    <div class="impact-metrics">
+      <div class="metric-card" *ngFor="let metric of impactMetrics">
+        <span class="metric-number">{{ metric.number }}</span>
+        <span class="metric-label">{{ metric.label }}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="cv-main">
+    <div class="main-grid">
+      <!-- Columna Izquierda -->
+      <div class="left-column">
+        <!-- Resumen Profesional -->
+        <section class="cv-section summary-section">
+          <h3 class="section-title">
+            <i class="fas fa-user-tie"></i>
+            {{ titles.profile }}
+          </h3>
+          <p class="section-content">{{ professionalSummary }}</p>
+        </section>
+
+        <!-- AvilaDev - Emprendimiento -->
+        <section class="cv-section aviladev-section">
+          <h3 class="section-title">
+            <i class="fas fa-rocket"></i>
+            {{ avilaDevInfo.name }}
+            <span class="badge-founder">Founder</span>
+          </h3>
+          <p class="company-description">{{ avilaDevInfo.description }}</p>
+
+          <h4 class="subsection-title">{{ titles.services }}</h4>
+          <div class="services-grid">
+            <span class="service-tag" *ngFor="let service of avilaDevInfo.services">
+              {{ service }}
+            </span>
+          </div>
+
+          <h4 class="subsection-title">{{ titles.achievements }}</h4>
+          <ul class="achievements-list">
+            <li *ngFor="let achievement of avilaDevInfo.achievements">
+              <i class="fas fa-check-circle"></i>
+              {{ achievement }}
+            </li>
+          </ul>
+        </section>
+
+        <!-- Habilidades Técnicas -->
+        <section class="cv-section">
+          <h3 class="section-title">
+            <i class="fas fa-code"></i>
+            {{ titles.techStack }}
+          </h3>
+
+          <div class="skills-category">
+            <h4><i class="fas fa-desktop"></i> {{ titles.frontend }}</h4>
+            <div class="skills-grid">
+              <span class="skill-tag" *ngFor="let skill of technicalSkills.frontend">{{ skill }}</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h4><i class="fas fa-server"></i> {{ titles.backend }}</h4>
+            <div class="skills-grid">
+              <span class="skill-tag highlight" *ngFor="let skill of technicalSkills.backend">{{ skill }}</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h4><i class="fas fa-mobile-alt"></i> {{ titles.mobile }}</h4>
+            <div class="skills-grid">
+              <span class="skill-tag mobile" *ngFor="let skill of technicalSkills.mobile">{{ skill }}</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h4><i class="fas fa-database"></i> {{ titles.databases }}</h4>
+            <div class="skills-grid">
+              <span class="skill-tag db" *ngFor="let skill of technicalSkills.databases">{{ skill }}</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h4><i class="fas fa-cloud"></i> {{ titles.cloud }}</h4>
+            <div class="skills-grid">
+              <span class="skill-tag cloud" *ngFor="let skill of technicalSkills.cloud">{{ skill }}</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Educación -->
+        <section class="cv-section">
+          <h3 class="section-title">
+            <i class="fas fa-graduation-cap"></i>
+            {{ titles.education }}
+          </h3>
+          <div class="education-item" *ngFor="let edu of education">
+            <h4>{{ edu.degree }}</h4>
+            <p class="institution">{{ edu.institution }}</p>
+            <p class="year">{{ edu.year }}</p>
+          </div>
+        </section>
+
+        <!-- Idiomas -->
+        <section class="cv-section">
+          <h3 class="section-title">
+            <i class="fas fa-language"></i>
+            {{ titles.languages }}
+          </h3>
+          <div class="languages-list">
+            <div class="language-item" *ngFor="let lang of languages">
+              <span class="language-name">{{ lang.language }}</span>
+              <span class="language-level">{{ lang.level }}</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Certificaciones -->
+        <section class="cv-section">
+          <h3 class="section-title">
+            <i class="fas fa-certificate"></i>
+            {{ titles.certifications }}
+          </h3>
+          <div class="certifications-list">
+            <div class="cert-item" *ngFor="let cert of certifications">
+              <i class="fas fa-award"></i>
+              <span>{{ cert }}</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Columna Derecha -->
+      <div class="right-column">
+        <!-- Proyectos Destacados -->
+        <section class="cv-section projects-section">
+          <h3 class="section-title">
+            <i class="fas fa-folder-open"></i>
+            {{ titles.projects }}
+          </h3>
+
+          <div class="projects-grid">
+            <div class="project-card" *ngFor="let project of featuredProjects">
+              <div class="project-header">
+                <h4 class="project-name">{{ project.name }}</h4>
+                <span class="project-type">{{ project.type }}</span>
+              </div>
+              <p class="project-description">{{ project.description }}</p>
+              <div class="project-footer">
+                <div class="project-tech">
+                  <span class="tech-mini" *ngFor="let tech of project.technologies">{{ tech }}</span>
+                </div>
+                <a *ngIf="project.url" class="project-link" [href]="'https://' + project.url" target="_blank">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experiencia Laboral -->
+        <section class="cv-section">
+          <h3 class="section-title">
+            <i class="fas fa-briefcase"></i>
+            {{ titles.experience }}
+          </h3>
+
+          <div class="timeline">
+            <div class="experience-item" *ngFor="let exp of workExperience; let i = index">
+              <div class="timeline-dot"></div>
+              <div class="exp-content">
+                <div class="exp-header">
+                  <div class="exp-title-group">
+                    <h4 class="company">{{ exp.company }}</h4>
+                    <h5 class="role">{{ exp.role }}</h5>
+                  </div>
+                  <span class="period">{{ exp.period }}</span>
+                </div>
+                <p class="description">{{ exp.description }}</p>
+
+                <div class="achievements" *ngIf="exp.achievements.length > 0">
+                  <ul>
+                    <li *ngFor="let achievement of exp.achievements.slice(0, 4)">
+                      {{ achievement }}
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="technologies">
+                  <span class="tech-tag" *ngFor="let tech of exp.technologies.slice(0, 5)">{{ tech }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Capacidades Personales -->
+        <section class="cv-section">
+          <h3 class="section-title">
+            <i class="fas fa-star"></i>
+            {{ titles.competencies }}
+          </h3>
+          <div class="competencies-grid">
+            <div class="competency-card" *ngFor="let item of softSkills">
+              <h4 class="competency-title">{{ item.skill }}</h4>
+              <p class="competency-desc">{{ item.description }}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="cv-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="brand-name">Marcel Marín</span>
+        <span class="brand-tagline">Full Stack Developer & Tech Entrepreneur</span>
+      </div>
+      <div class="footer-links">
+        <a class="footer-link" (click)="openExternalLink(personalInfo.linkedin)">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a class="footer-link" (click)="openExternalLink('https://' + personalInfo.website)">
+          <i class="fas fa-globe"></i>
+        </a>
+        <a class="footer-link" (click)="copyEmail()">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
