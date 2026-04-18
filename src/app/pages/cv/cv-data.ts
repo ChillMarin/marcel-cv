@@ -39,6 +39,7 @@ export interface CVData {
     mobile: string;
     databases: string;
     cloud: string;
+    ai: string;
     education: string;
     languages: string;
     certifications: string;
@@ -192,6 +193,7 @@ export const cvDataES: CVData = {
     mobile: ['React Native', 'Flutter', 'Android (Java/Kotlin)'],
     databases: ['PostgreSQL', 'MySQL', 'MongoDB'],
     cloud: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes'],
+    ai: ['ChatGPT', 'Claude AI', 'OpenAI API', 'Prompt Engineering', 'GitHub Copilot', 'Integración de IA en apps'],
     tools: ['Git', 'GitHub', 'Jira', 'Scrum', 'CI/CD'],
   },
 
@@ -248,6 +250,7 @@ export const cvDataES: CVData = {
     mobile: 'Mobile',
     databases: 'Bases de Datos',
     cloud: 'Cloud & DevOps',
+    ai: 'Inteligencia Artificial',
     education: 'Formación Académica',
     languages: 'Idiomas',
     certifications: 'Certificaciones',
@@ -401,6 +404,7 @@ export const cvDataEN: CVData = {
     mobile: ['React Native', 'Flutter', 'Android (Java/Kotlin)'],
     databases: ['PostgreSQL', 'MySQL', 'MongoDB'],
     cloud: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes'],
+    ai: ['ChatGPT', 'Claude AI', 'OpenAI API', 'Prompt Engineering', 'GitHub Copilot', 'AI Integration in Apps'],
     tools: ['Git', 'GitHub', 'Jira', 'Scrum', 'CI/CD'],
   },
 
@@ -457,6 +461,7 @@ export const cvDataEN: CVData = {
     mobile: 'Mobile',
     databases: 'Databases',
     cloud: 'Cloud & DevOps',
+    ai: 'Artificial Intelligence',
     education: 'Education',
     languages: 'Languages',
     certifications: 'Certifications',

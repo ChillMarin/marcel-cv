@@ -427,6 +427,11 @@ $gradient-gold: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
         background: rgba(52, 211, 153, 0.15);
         color: #10b981;
       }
+
+      &.ai {
+        background: rgba(139, 92, 246, 0.15);
+        color: #7c3aed;
+      }
     }
   }
 }
